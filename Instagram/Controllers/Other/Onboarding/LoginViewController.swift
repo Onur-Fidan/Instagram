@@ -5,6 +5,7 @@
 //  Created by Onur Fidan on 27.08.2023.
 //
 
+import SafariServices
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -211,6 +212,7 @@ class LoginViewController: UIViewController {
     }
   
     
+    //MARK: - Tap Login Button
     @objc private func didTapLoginButton() {
         passwordField.resignFirstResponder()
         usernameEmailField.resignFirstResponder()
@@ -223,13 +225,30 @@ class LoginViewController: UIViewController {
         //login functionally
     }
     
+    
+    //MARK: - Tap Terms Button
     @objc private func didTapTermsButton() {
-        
+        guard let url = URL(string: "https://help.instagram.com/581066165581870/") else {
+            return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
     }
     
-    @objc private func didTapPrivacyButton() {}
+    //MARK: - Top Privacy Button
+    @objc private func didTapPrivacyButton() {
+        guard let url = URL(string: "https://privacycenter.instagram.com/policy") else {
+            return
+        }
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+    }
     
-    @objc private func didTapCreateAccountButton() {}
+    //MARK: - Tap Create Account Button
+    @objc private func didTapCreateAccountButton() {
+        let vc = RegistrationViewController()
+        present(vc, animated: true)
+    }
 }
 
 
