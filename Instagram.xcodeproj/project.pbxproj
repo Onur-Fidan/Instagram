@@ -33,6 +33,11 @@
 		FA9C61262A9BA65C002BE2D3 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C61252A9BA65C002BE2D3 /* DatabaseManager.swift */; };
 		FA9C61282A9BA6EB002BE2D3 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C61272A9BA6EB002BE2D3 /* AuthManager.swift */; };
 		FA9C612A2A9BA715002BE2D3 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C61292A9BA715002BE2D3 /* StorageManager.swift */; };
+		FAABDBAD2A9BE2240069B94F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAABDBAC2A9BE2240069B94F /* Constants.swift */; };
+		FAB915CF2A9E466300A9A1EF /* IQFeedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB915CE2A9E466300A9A1EF /* IQFeedPostTableViewCell.swift */; };
+		FAB915D22A9E479100A9A1EF /* IQFeedPostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB915D12A9E479100A9A1EF /* IQFeedPostHeaderTableViewCell.swift */; };
+		FAB915D42A9E47B200A9A1EF /* IQFeedPostActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB915D32A9E47B200A9A1EF /* IQFeedPostActionTableViewCell.swift */; };
+		FAB915D62A9E47CC00A9A1EF /* IQFeedPostGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB915D52A9E47CC00A9A1EF /* IQFeedPostGeneralTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +71,11 @@
 		FA9C61252A9BA65C002BE2D3 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		FA9C61272A9BA6EB002BE2D3 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		FA9C61292A9BA715002BE2D3 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		FAABDBAC2A9BE2240069B94F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FAB915CE2A9E466300A9A1EF /* IQFeedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQFeedPostTableViewCell.swift; sourceTree = "<group>"; };
+		FAB915D12A9E479100A9A1EF /* IQFeedPostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQFeedPostHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		FAB915D32A9E47B200A9A1EF /* IQFeedPostActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQFeedPostActionTableViewCell.swift; sourceTree = "<group>"; };
+		FAB915D52A9E47CC00A9A1EF /* IQFeedPostGeneralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IQFeedPostGeneralTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,7 @@
 		FA9C60E92A9B9B63002BE2D3 /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				FA9C61222A9BA32A002BE2D3 /* GoogleService-Info.plist */,
 				FA9C61012A9B9BD2002BE2D3 /* Resources */,
 				FA9C61002A9B9BCB002BE2D3 /* Models */,
 				FA9C60FF2A9B9BBF002BE2D3 /* Views */,
@@ -139,6 +150,7 @@
 		FA9C60FF2A9B9BBF002BE2D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAB915CD2A9E463700A9A1EF /* Cells */,
 				FA9C60F32A9B9B64002BE2D3 /* Assets.xcassets */,
 				FA9C61022A9B9C30002BE2D3 /* Storyboards */,
 			);
@@ -155,13 +167,13 @@
 		FA9C61012A9B9BD2002BE2D3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA9C61222A9BA32A002BE2D3 /* GoogleService-Info.plist */,
 				FA9C60EA2A9B9B63002BE2D3 /* AppDelegate.swift */,
 				FA9C60EC2A9B9B63002BE2D3 /* SceneDelegate.swift */,
 				FA9C61252A9BA65C002BE2D3 /* DatabaseManager.swift */,
 				FA9C61272A9BA6EB002BE2D3 /* AuthManager.swift */,
 				FA9C61292A9BA715002BE2D3 /* StorageManager.swift */,
 				FA27115F2A9BAB1100F16A54 /* Extensions.swift */,
+				FAABDBAC2A9BE2240069B94F /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -208,9 +220,9 @@
 		FA9C61242A9BA5BB002BE2D3 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				FA9C61162A9B9D63002BE2D3 /* SettingsViewController.swift */,
 				FA9C61122A9B9D39002BE2D3 /* PostViewController.swift */,
 				FA9C61142A9B9D55002BE2D3 /* EditProfileViewController.swift */,
-				FA9C61162A9B9D63002BE2D3 /* SettingsViewController.swift */,
 				FA9C61182A9B9D70002BE2D3 /* ListViewController.swift */,
 				FA9C611A2A9B9D8C002BE2D3 /* SearchViewController.swift */,
 				FA9C611C2A9B9DA9002BE2D3 /* SearchResultViewController.swift */,
@@ -218,6 +230,25 @@
 				FA9C61202A9B9DD5002BE2D3 /* PublishPostViewController.swift */,
 			);
 			path = General;
+			sourceTree = "<group>";
+		};
+		FAB915CD2A9E463700A9A1EF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FAB915D02A9E477400A9A1EF /* Home Feed */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FAB915D02A9E477400A9A1EF /* Home Feed */ = {
+			isa = PBXGroup;
+			children = (
+				FAB915CE2A9E466300A9A1EF /* IQFeedPostTableViewCell.swift */,
+				FAB915D12A9E479100A9A1EF /* IQFeedPostHeaderTableViewCell.swift */,
+				FAB915D32A9E47B200A9A1EF /* IQFeedPostActionTableViewCell.swift */,
+				FAB915D52A9E47CC00A9A1EF /* IQFeedPostGeneralTableViewCell.swift */,
+			);
+			path = "Home Feed";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,12 +368,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9C61152A9B9D55002BE2D3 /* EditProfileViewController.swift in Sources */,
+				FAB915CF2A9E466300A9A1EF /* IQFeedPostTableViewCell.swift in Sources */,
+				FAABDBAD2A9BE2240069B94F /* Constants.swift in Sources */,
 				FA9C61042A9B9C9B002BE2D3 /* ExploreViewController.swift in Sources */,
 				FA9C61212A9B9DD5002BE2D3 /* PublishPostViewController.swift in Sources */,
 				FA9C61062A9B9CB0002BE2D3 /* CameraViewController.swift in Sources */,
+				FAB915D22A9E479100A9A1EF /* IQFeedPostHeaderTableViewCell.swift in Sources */,
 				FA9C60EF2A9B9B63002BE2D3 /* HomeViewController.swift in Sources */,
 				FA9C61112A9B9D20002BE2D3 /* RegistrationViewController.swift in Sources */,
 				FA9C611F2A9B9DC6002BE2D3 /* PostEditorViewController.swift in Sources */,
+				FAB915D62A9E47CC00A9A1EF /* IQFeedPostGeneralTableViewCell.swift in Sources */,
 				FA9C612A2A9BA715002BE2D3 /* StorageManager.swift in Sources */,
 				FA9C61132A9B9D39002BE2D3 /* PostViewController.swift in Sources */,
 				FA2711602A9BAB1100F16A54 /* Extensions.swift in Sources */,
@@ -350,6 +385,7 @@
 				FA9C61082A9B9CC4002BE2D3 /* NotificationsViewController.swift in Sources */,
 				FA9C611D2A9B9DA9002BE2D3 /* SearchResultViewController.swift in Sources */,
 				FA9C610F2A9B9D10002BE2D3 /* LoginViewController.swift in Sources */,
+				FAB915D42A9E47B200A9A1EF /* IQFeedPostActionTableViewCell.swift in Sources */,
 				FA9C611B2A9B9D8C002BE2D3 /* SearchViewController.swift in Sources */,
 				FA9C610A2A9B9CCF002BE2D3 /* ProfileViewController.swift in Sources */,
 				FA9C61282A9BA6EB002BE2D3 /* AuthManager.swift in Sources */,

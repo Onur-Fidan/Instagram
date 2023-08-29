@@ -9,10 +9,24 @@ import UIKit
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
-
+    
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(IQFeedPostTableViewCell.self
+                           , forCellReuseIdentifier: IQFeedPostTableViewCell.identifer)
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
     
     
@@ -33,6 +47,22 @@ class HomeViewController: UIViewController {
             present(loginVC, animated: false)
         }
     }
-
+    
 }
 
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: IQFeedPostTableViewCell.identifer, for: indexPath) as! IQFeedPostTableViewCell
+        
+        return cell
+    }
+}

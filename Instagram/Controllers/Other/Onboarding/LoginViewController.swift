@@ -7,16 +7,15 @@
 
 import SafariServices
 import UIKit
+import FirebaseAuth
+
 
 class LoginViewController: UIViewController {
     
-    struct Constants {
-        static let cornerRadius : CGFloat = 8.0
-    }
-    
+    /// Username Email TextField Features
     private let usernameEmailField: UITextField = {
         let field = UITextField()
-        field.placeholder = "Username or Email..."
+        field.placeholder = "Username or Email"
         field.returnKeyType = .next
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
@@ -30,10 +29,12 @@ class LoginViewController: UIViewController {
         return field
     }()
     
+    
+    /// Password TexfField Features
     private let passwordField : UITextField = {
         let field = UITextField()
         field.isSecureTextEntry = true
-        field.placeholder = "Password..."
+        field.placeholder = "Password"
         field.returnKeyType = .continue
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
@@ -47,6 +48,8 @@ class LoginViewController: UIViewController {
         return field
     }()
     
+    
+    ///Login Button Features
     private let loginButton: UIButton = {
         let button =  UIButton()
         button.setTitle("Log In", for: .normal)
@@ -56,6 +59,9 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    
+    
+    /// Terms Button Features
     private let termsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Terms of Service", for: .normal)
@@ -63,6 +69,9 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    
+    
+    /// Privacy Button Features
     private let privacyButton: UIButton = {
         let button = UIButton()
         button.setTitle("Privacy Policy", for: .normal)
@@ -70,6 +79,9 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    
+    
+    /// Create Account Button Features
     private let createAccount: UIButton = {
         let button =  UIButton()
         button.setTitleColor(.label, for: .normal)
@@ -77,6 +89,8 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    
+    /// HeaderView Features
     private let headerView: UIView = {
         let header =  UIView()
         header.clipsToBounds = true
@@ -84,7 +98,7 @@ class LoginViewController: UIViewController {
         header.addSubview(backgroundImageView)
         return header
     }()
-
+    
     
     
     
@@ -95,10 +109,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        //Add func to buttons
         createAccount.addTarget(self, action: #selector(didTapCreateAccountButton), for: .touchUpInside)
         termsButton.addTarget(self, action: #selector(didTapTermsButton), for: .touchUpInside)
         privacyButton.addTarget(self, action: #selector(didTapPrivacyButton), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         
         
         usernameEmailField.delegate = self
@@ -119,13 +134,13 @@ class LoginViewController: UIViewController {
     
     
     
-    //MARK: - viewDidLayoutSubviews
+    //MARK: - viewDidLayoutSubviews -> Assign Frames
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        //assign frames
+        //Assign Frames
         headerView.frame = CGRect(
-            x: 0,
+            x: 0.0,
             y: 0.0,
             width: view.width,
             height: view.height/3.0
@@ -176,6 +191,11 @@ class LoginViewController: UIViewController {
         configureHeaderView()
     }
     
+    
+    
+    
+    
+    
     //MARK: - Configure HeaderView
     private func configureHeaderView() {
         guard headerView.subviews.count == 1 else {
@@ -192,11 +212,15 @@ class LoginViewController: UIViewController {
         headerView.addSubview(imageView)
         imageView.contentMode = .scaleAspectFit
         imageView.frame = CGRect( x: 9,
-                                y: view.safeAreaInsets.top,
-                                width: headerView.width,
-                                height: headerView.height - view.safeAreaInsets.top
+                                  y: view.safeAreaInsets.top,
+                                  width: headerView.width,
+                                  height: headerView.height - view.safeAreaInsets.top
         )
     }
+    
+    
+    
+    
     
     
     
@@ -210,20 +234,58 @@ class LoginViewController: UIViewController {
         view.addSubview(headerView)
         view.addSubview(createAccount)
     }
-  
+    
+    
+
+    
+    
     
     //MARK: - Tap Login Button
     @objc private func didTapLoginButton() {
         passwordField.resignFirstResponder()
         usernameEmailField.resignFirstResponder()
         
+       
+        
         guard let usernameEmail = usernameEmailField.text, !usernameEmail.isEmpty,
-              let password = passwordField.text, password.count >= 8 else {
+              let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
             return
         }
         
-        //login functionally
+        var username: String?
+        var email: String?
+        
+        if usernameEmail.contains("@"), usernameEmail.contains(".") {
+            // email
+            email = usernameEmail
+            
+        } else {
+            // username
+            username = usernameEmail
+            
+        }
+    
+                
+        AuthManager.shared.loginUser(username: username, email: email, password: password) { success in
+            
+            DispatchQueue.main.async {
+                if success {
+                    // user logged in
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    // error occured
+                    let alert = UIAlertController(title: "Log In Error", message: "We were unable to log you in", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                    
+                }
+            }
+        }
     }
+    
+    
+    
+    
     
     
     //MARK: - Tap Terms Button
@@ -235,6 +297,9 @@ class LoginViewController: UIViewController {
         present(vc, animated: true)
     }
     
+    
+    
+    
     //MARK: - Top Privacy Button
     @objc private func didTapPrivacyButton() {
         guard let url = URL(string: "https://privacycenter.instagram.com/policy") else {
@@ -244,12 +309,17 @@ class LoginViewController: UIViewController {
         present(vc, animated: true)
     }
     
+    
+    
     //MARK: - Tap Create Account Button
     @objc private func didTapCreateAccountButton() {
         let vc = RegistrationViewController()
-        present(vc, animated: true)
+        vc.title = "Create Account"
+        present(UINavigationController(rootViewController: vc), animated: true)
     }
 }
+
+
 
 
 
